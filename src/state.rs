@@ -1,5 +1,5 @@
 use druid::kurbo::Line;
-use druid::{Data, Lens};
+use druid::{Data, Lens, Point};
 use im::Vector;
 
 #[derive(Clone, Data, Lens)]
@@ -7,6 +7,7 @@ pub struct AppState {
     pub current_line: Option<LineWrapper>,
     pub lines: WrappedVector,
     pub selected_line: Option<usize>,
+    pub selected_point: Option<Point>,  // Track selected point for snapping
 }
 
 impl AppState {
@@ -15,6 +16,7 @@ impl AppState {
             current_line: None,
             lines: WrappedVector { lines: Vector::new() },
             selected_line: None,
+            selected_point: None,
         }
     }
 }

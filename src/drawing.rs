@@ -35,6 +35,7 @@ fn draw_grid(ctx: &mut druid::piet::Piet, size: Size) {
 
 fn draw_lines(ctx: &mut druid::piet::Piet, data: &AppState) {
     let stroke_color = Color::rgb8(255, 255, 0);
+    let snap_color = Color::rgb8(0, 255, 0);
 
     for (i, line) in data.lines.lines.iter().enumerate() {
         let color = if Some(i) == data.selected_line {
@@ -46,6 +47,16 @@ fn draw_lines(ctx: &mut druid::piet::Piet, data: &AppState) {
     }
 
     if let Some(line) = &data.current_line {
-        ctx.stroke(line.0, &stroke_color, 2.0);
+        let color = if data.selected_point.is_some() {
+            snap_color.clone()
+        } else {
+            stroke_color.clone()
+        };
+        ctx.stroke(line.0, &color, 2.0);
+    }
+
+    if let Some(point) = data.selected_point {
+        let radius = 3.0;
+        ctx.fill(druid::kurbo::Circle::new(point, radius), &snap_color);
     }
 }
