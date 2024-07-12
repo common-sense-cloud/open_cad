@@ -1,0 +1,13 @@
+[package]
+name = "open_cad"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+druid = "0.7.0"
+druid-widget-nursery = "^0.1.0"
+euclid = "0.22"
+glib = "^0.20.0"
+im = "15.0.0"
